@@ -14,41 +14,37 @@ import java.util.List;
 
 public class StudentController {
 
-// dependency Injection
-
         @Autowired
         private StudentService studentService;
 
-        // Get all teachers
+        //dependency Injection
+        // Get all students
         @RequestMapping(method = RequestMethod.GET)
-        public List<Student> getAllTeachers(){
+        public List<Student> getAllStudent(){
             return studentService.getAllStudents();
         }
 
         @RequestMapping(path="/{id}",method = RequestMethod.GET)
         public Student getStudentById(@PathVariable String id){
             return studentService.getStudentById(id);
-            //return studentService.getTeacherById(id);
         }
-        // insert new Teacher
+        // insert new Student
         @RequestMapping(method = RequestMethod.POST)
         public void addNewStudent(@RequestBody Student newStudent){
-            //System.out.println("the Name of new Teacher is "+newTeacher.getName());
+            System.out.println("the Name of new Student is "+newStudent.getName());
             studentService.addNewStudent(newStudent);
         }
-        // delete Teacher : localhost:9090/teacher/2
+        // delete Student : localhost:9090/student/2
         @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-        public void deleteTeacher(@PathVariable String id){
+        public void deleteStudent(@PathVariable String id){
             System.out.println("the Id delete is " + id);
             studentService.deleteStudent(id);
-            //studentService.deleteTeacher(id);
+
         }
 
-        // delete Teacher by Id using Request Body
+        // delete Student by Id using Request Body
         @RequestMapping(method = RequestMethod.DELETE)
-        public void deleteTeacherByRequ(@RequestBody Student student){
-            //System.out.println("the id of teacher to delete is "+ teacher.getCi());
+        public void deleteStudentByRequ(@RequestBody Student student){
             studentService.deleteStudent(student.getId());
-            //studentService.deleteTeacher((int)teacher.getCi());
         }
 }

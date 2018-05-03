@@ -19,19 +19,19 @@ public class StudentService {
 
 
     // CRUD
-    // List Teachers
+    // List Students
     public List<Student> getAllStudents(){
         //get all documents from collection teacher
         return studentRepository.findAll();
 
-        // get all teacher from DB
-        //return listTeacher;
+        // get all student from DB
+        //return listStudent;
     }
-    // Add new Teacher
+    // Add new Student
     public void addNewStudent(Student newStudent){
-        // insert new Teacher into DB
+
         studentRepository.save(newStudent);
-        //listTeacher.add( newTeacher);
+
     }
 
     // Delete Teacher by Id
@@ -42,7 +42,7 @@ public class StudentService {
         //listTeacher.remove(id);
     }
 
-    // Get a teacher By Id
+    // Get a student By Id
 
     public Student getStudentById(String id){
         // get a Teacher by id from DB
