@@ -1,23 +1,32 @@
 package com.dh.project.demo.domain;
 
-public class Teacher {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-    private  long id;
+@Document
+public class Teacher {
+    @Id
+    private String id;
+
+    private  long ci;
 
     private  String name;
+
+    // fix error adding default constructor
     public Teacher(){
 
     }
-    public Teacher(long id, String name){
-        this.id = id;
+    public Teacher(long ci, String name) {
+        this.ci = ci;
         this.name = name;
     }
-    public long getId() {
-        return id;
+
+    public long getCi() {
+        return ci;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCi(long ci) {
+        this.ci = ci;
     }
 
     public String getName() {
@@ -28,5 +37,11 @@ public class Teacher {
         this.name = name;
     }
 
-}
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+}

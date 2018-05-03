@@ -1,55 +1,101 @@
 package com.dh.project.demo.service;
 
 import com.dh.project.demo.domain.Teacher;
+import com.dh.project.demo.repository.TeacherRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Attributes;
 
-
-/**
- * Created by jhonny on .
- */
 @Service
 public class TeacherService {
-    private List<Teacher> listTeachers=new ArrayList<>();
+    private static final List<Teacher> listTeacher = new ArrayList<>();
 
-    public TeacherService() {
-        listTeachers.add(new Teacher(0, "jhonny"));
-        listTeachers.add(new Teacher(1, "Gabriel"));
-        listTeachers.add(new Teacher(2, "Jorge"));
-        listTeachers.add(new Teacher(3, "Marco"));
+    @Autowired
+    private TeacherRepository teacherRepository;
+
+    public TeacherService(){
+        listTeacher.add(new Teacher(0,"Rudy"));
+        listTeacher.add(new Teacher(1,"Carlitos"));
+        listTeacher.add(new Teacher(2,"Jorgito"));
+        listTeacher.add(new Teacher(3,"Noemi"));
     }
 
-        //Grud
-        //List teachers
-        public List<Teacher> getAllTeachers() {
-            return listTeachers;
-        }
-        //Add new Teachers
-        public void addNewTeacher (Teacher newTeacher){
-            listTeachers.add(newTeacher);
-        }
+    // CRUD
+    // List Teachers
+    public List<Teacher> getAllTeachers(){
+        //get all documents from collection teacher
+        return teacherRepository.findAll();
 
-        //deletye teachers by id
-        public void deleteTeacher ( int id){
-            listTeachers.remove(id);
-        }
-        //get teacher by id
-        public Teacher getTeacher (int i){
-            return listTeachers.get(i);
-        }
+        // get all teacher from DB
+        //return listTeacher;
+    }
+    // Add new Teacher
+    public void addNewTeacher(Teacher newTeacher){
+        // insert new Teacher into DB
+        teacherRepository.save(newTeacher);
+        //listTeacher.add( newTeacher);
+    }
+
+    // Delete Teacher by Id
+    @Deprecated
+    public void deleteTeacher(int id){
+        // delete a teacher by id in DB
+        listTeacher.remove(id);
+    }
+
+    public void deleteTeacher(String id){
+        // delete a teacher by id in DB
+        teacherRepository.delete(id);
+        //listTeacher.remove(id);
+    }
+
+    // Get a teacher By Id
+    @Deprecated
+    public Teacher getTeacherById(int id){
+        // get a Teacher by id from DB
+        return listTeacher.get(id);
+    }
+
+    public Teacher getTeacherById(String id){
+        // get a Teacher by id from DB
+        return teacherRepository.findOne(id);
+        //return listTeacher.get(id);
+    }
 
 
-   /* public List<Teacher> getAllTeachers(){
-        List<Teacher> listTeachers = new ArrayList<>();
-        listTeachers.add(new Teacher(1, "jhonny"));
-        listTeachers.add(new Teacher(2, "Gabriel"));
-        listTeachers.add(new Teacher(3, "Su"));
-        return listTeachers;
+/*
+    public TeacherService(){
+        listTeacher.add(new Teacher(1,"Rudy"));
+        listTeacher.add(new Teacher(2,"Carlitos"));
+        listTeacher.add(new Teacher(3,"Jorgito"));
+        listTeacher.add(new Teacher(4,"Noemi"));
+    }
+
+    public List<Teacher> getAllTeacher(){
+
+        return listTeacher;
+
+    }
+
+    public void deleteTeacher(long Id){
+        System.out.println("Teacher to Telete" + listTeacher.get((int)Id));
+    }
+
+    public void addTeacher(Teacher teacher){
+        listTeacher.add(teacher);
+        System.out.println("teacher to add is "+ teacher.getName());
+    }
+
+    public void updateTeacher(Teacher teacher, long id){
+        listTeacher.set((int)(id), teacher);
+        System.out.println(listTeacher);
+    }
+
+    public Teacher getById(long id){
+        System.out.println(listTeacher);
+        return listTeacher.get((int)id);
+
     }*/
-
-    }
-
-
+}

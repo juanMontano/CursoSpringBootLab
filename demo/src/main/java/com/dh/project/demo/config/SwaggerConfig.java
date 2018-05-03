@@ -12,6 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * Created by jhonny on 5/20/17.
  */
+
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
@@ -37,4 +38,3 @@ public class SwaggerConfig {
                 "http");
     }
 }
-
