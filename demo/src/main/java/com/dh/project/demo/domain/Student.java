@@ -1,11 +1,13 @@
 package com.dh.project.demo.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Student {
     @Id
+    @Transient
     private String id;
 
     public Student(){
